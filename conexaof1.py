@@ -1,7 +1,7 @@
 import sqlite3
 
 # Conectar ao banco de dados
-conexao = sqlite3.connect("bancoF")
+conexao = sqlite3.connect("bancoE")
 cursor = conexao.cursor()
 
 # ID do usuário e exemplar que serão usados no empréstimo

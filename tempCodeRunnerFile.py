@@ -1,10 +1,10 @@
-dado = cursor.execute(
+cursor.execute(
 #     """
-#     SELECT Livros.titulo, Exemplares.codigo
-#     FROM Emprestimos
-#     JOIN Exemplares ON Emprestimos.exemplar_id = Exemplares.exemplar_id
-#     JOIN Livros ON Exemplares.livro_id = Livros.livro_id
-#     WHERE Emprestimos.estado = 'Pendente'
-    
+#     INSERT INTO Livros (livro_id, titulo,  editora_id, max_renovacoes)
+#     VALUES
+#     (1, 'Orientação a Objetos na Prática', 1, 3),
+#     (2, 'Desenvolvendo CSS na Web', 2, 1),
+#     (3, 'Dom Casmurro', 3, 4),
+#     (4, 'A Hora da Estrela', 2, 3);
 #     """
 # )

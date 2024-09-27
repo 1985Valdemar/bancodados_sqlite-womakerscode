@@ -1,28 +1,28 @@
 import sqlite3
 
-conexao = sqlite3.connect("bancoF")
+conexao = sqlite3.connect("bancoE")
 cursor = conexao.cursor()
 
 # Criando Tabela Autores
 # cursor.execute(
-#     """
-#     CREATE TABLE Autores(
-#     autor_id INT,
-#     nome VARCHAR(100),
-#     nacionalidade VARCHAR(50));
-#     """
+# """
+# CREATE TABLE Autores(
+# autor_id INT,
+# nome VARCHAR(100),
+#  nacionalidade VARCHAR(50));
+#   """
 # )
 
 # Inserindo Autores
 # cursor.execute(
-#     """
-#     INSERT INTO Autores (autor_id, nome, nacionalidade)
-#     VALUES
-#     (1, 'Caíque Cardoso', 'Brasileiro'),
-#     (2, 'Simon Collison', 'Americano'),
-#     (3, 'Machado de Assis', 'Brasileiro'),
-#     (4, 'Clarice Líspecto', 'Brasileiro');
-#     """
+#    """
+#   INSERT INTO Autores (autor_id, nome, nacionalidade)
+#   VALUES
+#   (1, 'Caíque Cardoso', 'Brasileiro'),
+#   (2, 'Simon Collison', 'Americano'),
+#  (3, 'Machado de Assis', 'Brasileiro'),
+#  (4, 'Clarice Líspecto', 'Brasileiro');
+#  """
 # )
 
 # Criando Tabela Editoras
@@ -50,15 +50,16 @@ cursor = conexao.cursor()
 # cursor.execute(
 #     """
 #     CREATE TABLE Livros (
-#     livro_id INTEGER PRIMARY KEY AUTOINCREMENT,
-#     titulo TEXT NOT NULL,
-#     editora_id INTEGER,
-#     max_renovacoes INTEGER,
-#     FOREIGN KEY (editora_id) REFERENCES Editoras(editora_id));
+#         livro_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         titulo TEXT NOT NULL,
+#         editora_id INTEGER NOT NULL,
+#         max_renovacoes INTEGER,
+#         FOREIGN KEY (editora_id) REFERENCES Editoras(editora_id)
+#     );
 #     """
 # )
 
-# Inserindo Livro
+# #Inserindo Livro
 # cursor.execute(
 #     """
 #     INSERT INTO Livros (livro_id, titulo,  editora_id, max_renovacoes)
@@ -114,6 +115,44 @@ cursor = conexao.cursor()
 # );
 # """
 # )
+#
+
+# #Inserindo Livro Pendentes
+# cursor.execute(
+#     """
+#     INSERT INTO Emprestimos (usuario_id, exemplar_id, data_emprestimo, data_devolucao, estado )
+#     VALUES
+#     (1, 1, '2024-09-01', '2024-09-15', 'Pendente'),
+#     (2, 2, '2024-09-05', '2024-09-20', 'Pendente'),
+#     (3, 3, '2024-09-10', '2024-09-25', 'Devolvido'),
+#     (4, 4, '2024-09-12', '2024-09-28', 'Pendente');
+#     """
+# )
+
+
+# #Inserindo Lista Usuarios
+# cursor.execute(
+#     """
+#     INSERT INTO Usuarios (usuario_id, nome, telefone, nacionalidade )
+#     VALUES
+#     (4, 'Frank', '20172017', 'Brasil'),
+#     (5, 'Daniela', '1984231984', 'Brasil'),
+#     (6, 'João', '20172017', 'Brasil');
+#     """
+# )
+
+# Inserindo Livro
+# cursor.execute(
+#     """
+#     INSERT INTO Livros (livro_id, titulo,  editora_id, max_renovacoes)
+#     VALUES
+#     (1, 'Orientação a Objetos na Prática', 1, 3),
+#     (2, 'Desenvolvendo CSS na Web', 2, 1),
+#     (3, 'Dom Casmurro', 3, 4),
+#     (4, 'A Hora da Estrela', 2, 3);
+#     """
+# )
+
 
 # Criando tabela Livro e Autores
 # cursor.execute(
@@ -125,7 +164,7 @@ cursor = conexao.cursor()
 #     FOREIGN KEY (livro_id) REFERENCES Livros(livro_id),
 #     FOREIGN KEY (autor_id) REFERENCES Autores(autor_id)
 # );
-# """
+#  """
 # )
 
 # Inserindo Livro e Autores
@@ -153,28 +192,39 @@ cursor = conexao.cursor()
 #     """
 # )
 
-# Consulta
-# todos os livros disponivel
+# ----------------------- Consulta------------------------------
+# ==================> todos os livros disponivel <================
 # dado = cursor.execute(
 #     """
+# ==================> CAPIAR ESTA PARTE <========================
 #     SELECT Livros.titulo, Exemplares.codigo
 #     FROM Livros
 #     JOIN Exemplares ON Livros.livro_id = Exemplares.livro_id
 #     WHERE Exemplares.disponivel = 1;
-
+# ===============================================================
 #     """
 # )
 
 # Encontrar todos os livros emprestados
 # dado = cursor.execute(
 #     """
-#     SELECT Livros.titulo, Exemplares.codigo
-#     FROM Emprestimos
-#     JOIN Exemplares ON Emprestimos.exemplar_id = Exemplares.exemplar_id
-#     JOIN Livros ON Exemplares.livro_id = Livros.livro_id
-#     WHERE Emprestimos.estado = 'Pendente'
+# ==================> CAPIAR ESTA PARTE <========================
+# SELECT Livros.titulo, Exemplares.codigo
+# FROM Emprestimos
+# JOIN Exemplares ON Emprestimos.exemplar_id = Exemplares.exemplar_id
+# JOIN Livros ON Exemplares.livro_id = Livros.livro_id
+# WHERE Emprestimos.estado = 'Pendente'
+# ===============================================================
 #     """
 # )
+
+# VAI CONTAR QUANTOS NOMES TEM NO USUARIOS
+# ==================> CAPIAR ESTA PARTE <========================
+# SELECT nome, COUNT(*) AS total 
+# FROM Usuarios 
+# GROUP BY nome 
+# HAVING COUNT(*) > 1;
+# ===============================================================
 
 # # Para acessar os resultados
 # resultados = dado.fetchall()
