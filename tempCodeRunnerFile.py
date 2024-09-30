@@ -1,10 +1,26 @@
-cursor.execute(
-#     """
-#     INSERT INTO Livros (livro_id, titulo,  editora_id, max_renovacoes)
-#     VALUES
-#     (1, 'Orientação a Objetos na Prática', 1, 3),
-#     (2, 'Desenvolvendo CSS na Web', 2, 1),
-#     (3, 'Dom Casmurro', 3, 4),
-#     (4, 'A Hora da Estrela', 2, 3);
-#     """
-# )
+
+# Atualizando os valores dos livros no banco de dados
+cursor.execute("""
+    UPDATE Livros
+    SET valor = 59.90
+    WHERE livro_id = 1;
+""")
+
+cursor.execute("""
+    UPDATE Livros
+    SET valor = 45.00
+    WHERE livro_id = 2;
+""")
+
+cursor.execute("""
+    UPDATE Livros
+    SET valor = 34.99
+    WHERE livro_id = 3;
+""")
+
+cursor.execute("""
+    UPDATE Livros
+    SET valor = 29.90
+    WHERE livro_id = 4;
+""")
+
